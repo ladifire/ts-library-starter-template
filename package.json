@@ -1,0 +1,79 @@
+{
+  "name": "ts-library-starter-template",
+  "version": "0.0.1-alpha.0",
+  "homepage": "https://github.com/ladifire/ts-library-starter-template",
+  "bugs": {
+    "url": "https://github.com/ladifire/ts-library-starter-template/issues",
+    "email": "feedback@ladifire.com"
+  },
+  "repository": {
+    "type": "git",
+    "directory": "https://github.com/ladifire/ts-library-starter-template"
+  },
+  "engines": {
+    "node": ">= 10.16.0"
+  },
+  "description": "This is typescript library package starter template that we using at Ladifire.",
+  "author": "Ladifire",
+  "license": "Apache-2.0",
+  "private": false,
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "unpkg": "./index.js",
+  "scripts": {
+    "start": "concurrently \"tsc -w\" \"babel src --watch --out-dir lib --extensions '.ts,.tsx'\" -n 'tsc,babel' -k",
+    "build": "tsc && babel src --out-dir lib --extensions '.ts,.tsx' && webpack",
+    "test": "jest --config jestconfig.json",
+    "format": "prettier --write \"src/**/*.{ts,tsx}\" \"src/**/*.js\"",
+    "lint": "tslint -p tsconfig.json",
+    "typecheck": "tsc --noEmit true --emitDeclarationOnly false",
+    "prepublishOnly": "yarn lint && yarn typecheck && yarn format && yarn build",
+    "precommit": "lint-staged && yarn typecheck"
+  },
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "lib/*",
+    "package.json",
+    "README.md"
+  ],
+  "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/plugin-proposal-object-rest-spread": "^7.5.5",
+    "@babel/plugin-transform-modules-commonjs": "^7.5.0",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-typescript": "^7.6.0",
+    "@types/jest": "^24.0.23",
+    "@types/node": "^12.7.1",
+    "@types/ramda": "^0.26.33",
+    "@types/yup": "^0.26.22",
+    "babel-plugin-module-resolver": "^3.2.0",
+    "concurrently": "^4.1.1",
+    "jest": "^24.8.0",
+    "lint-staged": "^9.4.2",
+    "npm-dts-webpack-plugin": "^1.1.10",
+    "prettier": "^1.18.2",
+    "ts-jest": "^24.1.0",
+    "tslint": "^6.0.0",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-react": "^4.1.0",
+    "tslint-react-a11y": "^1.1.0",
+    "tslint-react-hooks": "^2.2.1",
+    "typescript": "^3.8.2",
+    "webpack": "^4.39.2",
+    "webpack-cli": "^3.3.6",
+    "webpack-dev-server": "^3.8.0"
+  },
+  "resolutions": {
+    "handlebars": "^4.4.3"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js}": [
+      "tslint",
+      "prettier --write",
+      "git add"
+    ]
+  }
+}
